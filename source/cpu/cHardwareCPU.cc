@@ -3785,6 +3785,7 @@ bool cHardwareCPU::Inst_SenseNextResLevel(cAvidaContext& ctx)
   int opinion = m_organism->GetOpinion().first;
 
   const int num_groups = m_organism->GetOrgInterface().GetResources(ctx).GetSize();
+
   if (num_groups <= 2) return false;
 
   // If not nop-modified, fails to execute.

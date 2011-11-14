@@ -1682,6 +1682,7 @@ int cPhenotype::CalcToleranceImmigrants()
   }
 
   const int tolerance = tolerance_max - intolerance_count;
+
   // Update cached values
   intolerances[0].first = cur_update;
   intolerances[0].second = intolerance_count;

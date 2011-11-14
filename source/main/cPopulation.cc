@@ -4797,7 +4797,7 @@ bool cPopulation::DumpMemorySummary(ofstream& fp)
  * this organism.
  **/
 
-void cPopulation::Inject(const Genome& genome, eBioUnitSource src, cAvidaContext& ctx, int cell_id, double merit, int lineage_label, double neutral) 
+void cPopulation::Inject(const Genome& genome, eBioUnitSource src, cAvidaContext& ctx, int cell_id, double merit, int lineage_label, double neutral, int group_id, int forager_type) 
 {
   // If an invalid cell was given, choose a new ID for it.
   if (cell_id < 0) {
@@ -4822,8 +4822,9 @@ void cPopulation::Inject(const Genome& genome, eBioUnitSource src, cAvidaContext
   AdjustSchedule(GetCell(cell_id), phenotype.GetMerit());
 
   cell_array[cell_id].GetOrganism()->SetLineageLabel(lineage_label);
+	cell_array[cell_id].GetOrganism()->JoinGroup(group_id);
+  cell_array[cell_id].GetOrganism()->SetForageTarget(forager_type);
 
-	
 	// the following bit of code is required for proper germline support.
 	// even if there's only one deme!!
 	if(m_world->GetConfig().DEMES_USE_GERMLINE.Get()) {

@@ -2850,8 +2850,10 @@ bool cHardwareExperimental::Inst_RotateX(cAvidaContext& ctx)
     m_world->GetRandom().GetInt(0,2) ? rot_dir = -1 : rot_dir = 1; 
   }
   // Else rotate the nop number of times in the appropriate direction
-  rot_num < 0 ? rot_dir = -1 : rot_dir = 1;
-  rot_num = abs(rot_num);
+  else {
+    rot_num < 0 ? rot_dir = -1 : rot_dir = 1;
+    rot_num = abs(rot_num);
+  }
   if (rot_num > 7) rot_num = rot_num % 8;
   for (int i = 0; i < rot_num; i++) m_organism->Rotate(rot_dir);
   
@@ -3718,7 +3720,7 @@ bool cHardwareExperimental::Inst_ChangePredGroup(cAvidaContext& ctx)
 // A predator establishes a new group. @JJB
 bool cHardwareExperimental::Inst_MakePredGroup(cAvidaContext& ctx)
 {
-  assert(m_organsim != 0);
+  assert(m_organism != 0);
   if (m_organism->GetForageTarget() != -2) return false;
   if (m_world->GetConfig().USE_FORM_GROUPS.Get() != 1) return false;
 
