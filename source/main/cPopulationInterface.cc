@@ -1463,7 +1463,7 @@ bool cPopulationInterface::AttemptImmigrateGroup(int group_id, cOrganism* org)
 
 void cPopulationInterface::PushToleranceInstExe(int tol_inst, cAvidaContext& ctx)
 {
-  if(!m_world->GetConfig().TRACK_TOLERANCE.Get()) {
+  if(m_world->GetConfig().TRACK_TOLERANCE.Get()) {
     m_world->GetStats().PushToleranceInstExe(tol_inst);
     return;
   }
